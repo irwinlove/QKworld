@@ -5,4 +5,5 @@ from blog.models import Artical,Author,Tag,Classification
 from django.template import RequestContext
 def blog_list(request):
 	blogs=Artical.objects.all().order_by('-publishTime')
-	return render_to_response('index.html',{"blogs":blogs},context_instance=RequestContext(request))
+	# return render_to_response('blog/index.html',{"blogs":blogs},context_instance=RequestContext(request))
+	return render(request,'blog/index.html',{"blogs":blogs})

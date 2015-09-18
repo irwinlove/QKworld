@@ -6,7 +6,7 @@ class Tag(models.Model):#
 	tagName=models.CharField(max_length=20)
 	createTime=models.DateTimeField(auto_now_add=True)
 	def __unicode__(self):
-		return self.tag_name
+		return self.tagName
 class Classification(models.Model):
 	name=models.CharField(max_length=40)
 	def __unicode__(self):

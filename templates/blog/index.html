@@ -1,32 +1,70 @@
-{%extends 'blog/base.html'%}
-{%load staticfiles%}
-{%block title%}{{category_name}}{%endblock%}
-{% block body_block %}
-    {% if user.is_authenticated %}
-    <div class="page-header">
-        <h1>blog says... hello {{ user.username }}!</h1>
-    {% else %}
-    <h1>blog says... hello viewer!</h1>
-    {% endif %}
-    </div>
- <!--    <br/>
-    <img src="{%static "images/google.jpg"%}" alt="Picture of rango">
-    <h1>including static media</h1>  -->
-    <div class="row placeholders">
-            <div class="col-xs-12 col-sm-6 placeholder">
-               <h4>Categories</h4>
-     {% if categories %}
-            <ul>
-                {% for category in categories %}
-                <!-- Following line changed to add an HTML hyperlink -->
-                <li><a href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
-                {% endfor %}
-            </ul>
-       {% else %}
-            <strong>There are no categories present.</strong>
-       {% endif %}
+{% extends "base.html" %} {% load staticfiles %}
+{% block title_block %}Home{% endblock title_block %} 
+{% block main_block %}
+<div class="uk-container uk-container-center">
+    <div class="uk-grid" data-uk-grid-margin="">
+        <div class="uk-width-medium-3-4">
+            <article class="uk-article">
+                <h2 class="uk-h2"><a href="/blog/{{ blog.id }}">{{ blog.name }}</a></h2>
+                <p class="uk-article-meta">Post By{{ blog.author}} On {{blog.postTime}} | View(1) | Comments(0)</p>
+                <p>{{ blog.summary }}</p>
+                <p><a href="/blog/{{ blog.id }}">More <i class="uk-icon-angle-double-right"></i></a></p>
+            </article>
+            <hr class="uk-article-divider">
+            <article class="uk-article">
+                <h2 class="uk-h2"><a href="/blog/{{ blog.id }}">{{ blog.name }}</a></h2>
+                <p class="uk-article-meta">本文由{{ blog.author}} 发表于 {{blog.postTime}} | 阅读(1) | 评论(0)</p>
+                <p>{{ blog.summary }}</p>
+                <p><a href="/blog/{{ blog.id }}">继续阅读 <i class="uk-icon-angle-double-right"></i></a></p>
+            </article>
+            <hr class="uk-article-divider">
+        </div>
+        <div class="uk-width-medium-1-4">
+            <div class="uk-panel">
+                <h3 class="uk-panel-title">Archives</h3>
+                <ul class="uk-list uk-list-line">
+                    <li><a href="#">January 2014</a></li>
+                    <li><a href="#">December 2013</a></li>
+                    <li><a href="#">November 2013</a></li>
+                    <li><a href="#">October 2013</a></li>
+                    <li><a href="#">September 2013</a></li>
+                </ul>
             </div>
+            <div class="uk-panel uk-panel-header">
+                <h3 class="uk-panel-title uk-h3">Social Links</h3>
+                <ul class="uk-list uk-list-line">
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-       <p>visits:{{ visits }}</p>
-       {# <p>Last_visit_time:{{ last_visit_time }}</p> #}
-{%endblock%}
+    <!-- pagination -->
+    <!-- <ul class="uk-pagination" data-uk-pagination="">
+            <li class="uk-disabled"><span><i class="uk-icon-angle-double-left"></i></span></li>
+            <li class="uk-active"><span>1</span></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><span>...</span></li>
+            <li><a href="#">20</a></li>
+            <li><a href="#"><i class="uk-icon-angle-double-right"></i></a></li>
+        </ul> -->
+    <ul class="uk-pagination" data-uk-pagination="{items:100, itemsOnPage:10, currentPage:1}">
+        <!-- <li class="uk-pagination-previous"><a href=""></a></li>
+            <li class="uk-pagination-next"><a href=""></a></li> -->
+        <li><a href="#"><i class="uk-icon-angle-double-left"></i></a></li>
+        <li><a href="#page-1" data-page="0">1</a></li>
+        <li><a href="#page-2" data-page="1">2</a></li>
+        <li><a href="#page-3" data-page="2">3</a></li>
+        <li><span>...</span></li>
+        <li><a href="#page-73" data-page="7">7</a></li>
+        <li class="uk-active"><span>8</span></li>
+        <li><a href="#page-75" data-page="9">9</a></li>
+        <li><span>...</span></li>
+        <li><a href="#page-98" data-page="10">10</a></li>
+        <li><a href="#"><i class="uk-icon-angle-double-right"></i></a></li>
+    </ul>
+</div>
+{% endblock main_block %}
