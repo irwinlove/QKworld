@@ -26,6 +26,11 @@ class Artical(models.Model):
 	classification=models.ForeignKey(Classification)
 	tags=models.ManyToManyField(Tag,blank=True)
 	content=models.TextField()
+	summary=models.CharField(max_length=300,blank=True)
+	views=models.IntegerField(default=0)
+	likes=models.IntegerField(default=0)
+	def __unicode__(self):
+		return u'%s'%(self.caption)
 # class Comments(models.Model):
 # 	artical=models.ForeignKey(Artical)
 # 	content=models.TextField()

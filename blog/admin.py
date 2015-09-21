@@ -1,3 +1,4 @@
+# coding=utf8
 from django.contrib import admin
 from blog.models import Author,Artical,Tag,Classification
 # Register your models here.
