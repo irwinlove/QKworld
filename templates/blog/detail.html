@@ -1,39 +1,20 @@
-{% extends "base.html" %} {% load staticfiles %} {% block title_block %}Home{% endblock title_block %} 
-{% block main_block %}
+{% extends "base.html" %} {% load staticfiles %} {% block title_block %}Home{% endblock title_block %} {% block main_block %}
 <div class="uk-container uk-container-center">
     <div class="uk-grid" data-uk-grid-margin="">
         <div class="uk-width-medium-3-4">
-            {% for blog in blogs %}
             <article class="uk-article">
-                <h2 class="uk-h2"><a href="/blog/detail/{{ blog.id }}">{{ blog.caption }}</a></h2>
+                <h2 class="uk-h1"><a href="/blog/detail/{{ blog.id }}">{{ blog.caption }}</a></h2>
                 <p class="uk-article-meta"><i class="uk-icon-user">{{ blog.author}} </i> <i class="uk-icon-clock-o">{{blog.publishTime | date:"Y M d - H:i:s"}} </i>| <i class="uk-icon-eye-slash"></i>({{blog.views}}) | Comments(0) | <i class="uk-icon-thumbs-up">{{blog.likes}}</i></p>
-                <p>{{ blog.summary }}</p>
-                <p><a href="/blog/detail/{{ blog.id }}">More <i class="uk-icon-angle-double-right"></i></a></p>
+                <p>{{ blog.content }}</p>
             </article>
-            <hr class="uk-article-divider"> {% empty %} There is no blogs here! 
-            {% endfor %}
-            <article class="uk-article">
+            <hr class="uk-article-divider">
+            <!-- <article class="uk-article">
                 <h2 class="uk-h2"><a href="/blog/{{ blog.id }}">{{ blog.name }}</a></h2>
                 <p class="uk-article-meta">本文由{{ blog.author}} 发表于 {{blog.postTime}} | 阅读(1) | 评论(0)</p>
                 <p>{{ blog.summary }}</p>
                 <p><a href="/blog/{{ blog.id }}">继续阅读 <i class="uk-icon-angle-double-right"></i></a></p>
             </article>
-            <hr class="uk-article-divider">
-            
-            <div class="pagination">
-                <span class="step-links">
-                    {% if blogs.has_previous %}
-                        <a href="?page={{ blogs.previous_page_number }}">previous</a>
-                    {% endif %}
-                    <span class="current">
-                        Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}.
-                    </span> 
-                    {% if blogs.has_next %}
-                        <a href="?page={{ blogs.next_page_number }}">next</a> 
-                    {% endif %}
-                </span>
-            </div>
-            <!-- <ul class="pageination"></ul> -->
+            <hr class="uk-article-divider"> -->
         </div>
         <div class="uk-width-medium-1-4">
             <div class="uk-panel">
@@ -57,4 +38,4 @@
         </div>
     </div>
 </div>
-{% endblock  %}
+{% endblock main_block %}

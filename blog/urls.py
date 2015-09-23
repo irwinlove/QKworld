@@ -9,6 +9,7 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', 'blog.views.blog_list',name='blog_list'),
+    url(r'detail/(?P<blog_id>[\w\-]+)$', 'blog.views.blog_detail',name='blog_detail'),
 ]
 
 

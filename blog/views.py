@@ -3,7 +3,28 @@ from django.shortcuts import render,render_to_response
 # Create your views here.
 from blog.models import Artical,Author,Tag,Classification
 from django.template import RequestContext
+from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 def blog_list(request):
-	blogs=Artical.objects.all().order_by('-publishTime')
+	artical_list=Artical.objects.all().order_by('-publishTime')
+	paginator=Paginator(artical_list, 3)#show 3 artical per page
+	page=request.GET.get('page') 
+	try:
+		artical_list=paginator.page(page)
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		artical_list=paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		artical_list=paginator.page(paginator.num_pages)
 	# return render_to_response('blog/index.html',{"blogs":blogs},context_instance=RequestContext(request))
-	return render(request,'blog/index.html',{"blogs":blogs})
+	return render(request,'blog/index.html',{"blogs":artical_list})
+
+
+
+def blog_detail(request,blog_id):
+	try:
+		blog=Artical.objects.get(id=blog_id)
+	except Artical.DoesNotExist:
+		pass
+	return render(request,'blog/detail.html',{"blog":blog})
+	
