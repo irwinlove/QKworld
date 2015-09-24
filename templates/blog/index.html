@@ -1,5 +1,4 @@
-{% extends "base.html" %} {% load staticfiles %} {% block title_block %}Home{% endblock title_block %} 
-{% block main_block %}
+{% extends "base.html" %} {% load staticfiles %} {% block title_block %}Home{% endblock title_block %} {% block main_block %}
 <div class="uk-container uk-container-center">
     <div class="uk-grid" data-uk-grid-margin="">
         <div class="uk-width-medium-3-4">
@@ -10,17 +9,15 @@
                 <p>{{ blog.summary }}</p>
                 <p><a href="/blog/detail/{{ blog.id }}">More <i class="uk-icon-angle-double-right"></i></a></p>
             </article>
-            <hr class="uk-article-divider"> {% empty %} There is no blogs here! 
-            {% endfor %}
-            <article class="uk-article">
-                <h2 class="uk-h2"><a href="/blog/{{ blog.id }}">{{ blog.name }}</a></h2>
-                <p class="uk-article-meta">本文由{{ blog.author}} 发表于 {{blog.postTime}} | 阅读(1) | 评论(0)</p>
-                <p>{{ blog.summary }}</p>
-                <p><a href="/blog/{{ blog.id }}">继续阅读 <i class="uk-icon-angle-double-right"></i></a></p>
-            </article>
-            <hr class="uk-article-divider">
-            
-            <div class="pagination">
+            <hr class="uk-article-divider"> {% empty %} There is no blogs here! {% endfor %}
+            <!--  <article class="uk-article">
+               <h2 class="uk-h2"><a href="/blog/{{ blog.id }}">{{ blog.name }}</a></h2>
+               <p class="uk-article-meta">本文由{{ blog.author}} 发表于 {{blog.postTime}} | 阅读(1) | 评论(0)</p>
+               <p>{{ blog.summary }}</p>
+               <p><a href="/blog/{{ blog.id }}">继续阅读 <i class="uk-icon-angle-double-right"></i></a></p>
+           </article>
+           <hr class="uk-article-divider"> -->
+            <!-- <div class="pagination">
                 <span class="step-links">
                     {% if blogs.has_previous %}
                         <a href="?page={{ blogs.previous_page_number }}">previous</a>
@@ -32,8 +29,14 @@
                         <a href="?page={{ blogs.next_page_number }}">next</a> 
                     {% endif %}
                 </span>
+            </div> -->
+            <div>
+                <ul class="uk-pagination" data-uk-pagination="{items:{{items}},itemsOnPage:{{itemsOnpage}},currentPage:1}">
+                    <!-- <li class="uk-pagination-previous">previous</li>
+                    <li class="uk-pagination-next">next</li> -->
+                </ul>
             </div>
-            <!-- <ul class="pageination"></ul> -->
+            <ul class="pageination"></ul>
         </div>
         <div class="uk-width-medium-1-4">
             <div class="uk-panel">
@@ -57,4 +60,4 @@
         </div>
     </div>
 </div>
-{% endblock  %}
+{% endblock %}

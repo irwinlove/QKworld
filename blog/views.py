@@ -6,7 +6,9 @@ from django.template import RequestContext
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 def blog_list(request):
 	artical_list=Artical.objects.all().order_by('-publishTime')
-	paginator=Paginator(artical_list, 3)#show 3 artical per page
+	items=len(artical_list)
+	itemsOnpage=5
+	paginator=Paginator(artical_list, itemsOnpage)#show 5 artical per page
 	page=request.GET.get('page') 
 	try:
 		artical_list=paginator.page(page)
@@ -17,7 +19,7 @@ def blog_list(request):
 		# If page is out of range (e.g. 9999), deliver last page of results.
 		artical_list=paginator.page(paginator.num_pages)
 	# return render_to_response('blog/index.html',{"blogs":blogs},context_instance=RequestContext(request))
-	return render(request,'blog/index.html',{"blogs":artical_list})
+	return render(request,'blog/index.html',{"blogs":artical_list,"items":items,"itemsOnpage":itemsOnpage,})
 
 
 
