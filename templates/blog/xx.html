@@ -133,3 +133,26 @@
     <li><a href="#">20</a></li>
     <li><a href="#"><i class="uk-icon-angle-double-right"></i></a></li>
 </ul>
+
+
+
+
+<p>
+{% if topics.has_previous %}
+  <a href="?page={{ topics.previous_page_number }}">Previous</a>
+  {% endif %}
+  {# topics.paginator.number_pages 返回总页数 #}
+  Page {{ topics.number }} of {{ topics.paginator.num_pages }}.
+{% if topics.has_next %}
+  <a href="?page={{ topics.next_page_number }}">Next</a>
+{% endif %}
+</p>
+
+
+{# {% for page_number in blogs.paginator.page_range %}
+                    {% ifequal page_number  blogs.number %}
+                        <li class="uk-active"><span>{{ page_number }}</span></li>
+                    {% else %}
+                        <li><a href="?page={{ page_number }}">{{ page_number }}</a></li>
+                    {% endifequal %}
+                {% endfor %} #}

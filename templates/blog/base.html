@@ -36,19 +36,19 @@
             </div>
             <div class="uk-navbar-flip">
                 <ul class="uk-navbar-nav">
-                    <!-- {% if user %}
-                    <li class="uk-parent" data-uk-dropdown>
-                        <a href="#0"><i class="uk-icon-user"></i> {{ user.name }}</a>
-                        <div class="uk-dropdown uk-dropdown-navbar">
-                            <ul class="uk-nav uk-nav-navbar">
-                                <li><a href="/signout"><i class="uk-icon-sign-out"></i> 退出</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    {% else %} -->
+                  {% if user %}
+                  <li class="uk-parent" data-uk-dropdown>
+                      <a href="#0"><i class="uk-icon-user"></i> {{ user.name }}</a>
+                      <div class="uk-dropdown uk-dropdown-navbar">
+                          <ul class="uk-nav uk-nav-navbar">
+                              <li><a href="/signout"><i class="uk-icon-sign-out"></i> 退出</a></li>
+                          </ul>
+                      </div>
+                  </li>
+                  {% else %}
                     <li><a href="/signin"><i class="uk-icon-sign-in"></i> 登陆</a></li>
-                    <!-- <li><a href="/register"><i class="uk-icon-edit"></i> 注册</a></li>
-                    {% endif %} -->
+                    <li><a href="/register"><i class="uk-icon-edit"></i> 注册</a></li>
+                    {% endif %}
                 </ul>
                 <a href="#side-nav" class="uk-navbar-toggle " data-uk-offcanvas></a>
             </div>

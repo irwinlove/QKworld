@@ -31,12 +31,21 @@
                 </span>
             </div> -->
             <div>
-                <ul class="uk-pagination" data-uk-pagination="{items:{{items}},itemsOnPage:{{itemsOnpage}},currentPage:1}">
-                    <!-- <li class="uk-pagination-previous">previous</li>
-                    <li class="uk-pagination-next">next</li> -->
+                <ul class="uk-pagination" >
+                {% if blogs.has_previous %}
+                    <li class="uk-pagination-previous uk-cover"><a href="?page={{blogs.previous_page_number}}"><i class="uk-icon-arrow-circle-left  uk-icon-medium"></i></a></li>
+                    {% else %}
+                    <li class="uk-pagination-previous uk-disabled"><i class="uk-icon-arrow-circle-left  uk-icon-medium"></i></li>
+                {% endif %}
+                {% if blogs.has_next %}
+                    <li class="uk-pagination-next uk-cover"><a href="?page={{blogs.next_page_number}}"><i class="uk-icon-arrow-circle-right uk-icon-medium"></i></a></li>
+                    {% else %}
+                    <li class="uk-pagination-next uk-disabled"><i class="uk-icon-arrow-circle-right uk-icon-medium"></i></li>
+                {% endif %}
+                </ul>
+                <ul class="uk-pagination" data-uk-pagination="{items:{{blogs.paginator.count}},pages:{{blogs.paginator.num_pages}}}">
                 </ul>
             </div>
-            <ul class="pageination"></ul>
         </div>
         <div class="uk-width-medium-1-4">
             <div class="uk-panel">

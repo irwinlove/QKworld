@@ -43,3 +43,9 @@ class Artical(models.Model):
 # 	replyTime=models.DateTimeField(auto_now_add=True)
 # 	updateTime=models.DateTimeField(auto_now=True)
 # 	replyer=models.ForeignKey(User)
+class UserProfile(models.Model):
+	website=models.URLField()
+	picture=models.ImageField(upload_to='profile_images',blank=True)
+	user=models.OneToOneField(User)
+	def __unicode__(self):
+		return self.user.username

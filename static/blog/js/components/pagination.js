@@ -138,7 +138,7 @@
             options   = UI.$.extend({ text: pageIndex + 1 }, opts);
 
             item = (pageIndex == this.currentPage) ? '<li class="uk-active"><span>' + (options.text) + '</span></li>'
-                                                   : '<li><a href="#page-'+(pageIndex+1)+'" data-page="'+pageIndex+'">'+options.text+'</a></li>';
+                                                   : '<li><a href="?page='+(pageIndex+1)+'" data-page="'+pageIndex+'">'+options.text+'</a></li>';
 
             this.element.append(item);
         }

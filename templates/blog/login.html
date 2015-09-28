@@ -1,0 +1,42 @@
+<!DOCTYPE html> 
+{%load static from staticfiles%}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>--Welcome to QKworld--{%block title_block%}Login{%endblock title_block%}</title>
+    <link rel="shortcut icon" href="{% static "/blog/images/favicon.icon" %}" type="image/x-icon"> 
+    {#<link rel="stylesheet" href="{{static ('css/uikit.css') }}"> #}
+    <link rel="stylesheet" type="text/css" href="{% static "blog/css/uikit.css" %}">
+</head>
+
+<body class="uk-height-1-1">
+    <div class="uk-vertical-align uk-text-center uk-height-1-1">
+        <div class="uk-vertical-align-middle" style="width: 250px;">
+            <img class="uk-margin-bottom" width="140" height="120" src="#" alt="">
+
+            <form id="login_form" class="uk-panel uk-panel-box uk-form" method="POST" action="/login/">
+                {% csrf_token %}
+                <div class="uk-form-row">
+                    <input class="uk-width-1-1 uk-form-large" type="text" name="username" placeholder="Username">
+                </div>
+                <div class="uk-form-row">
+                    <input class="uk-width-1-1 uk-form-large" type="password" name="password" placeholder="Password">
+                </div>
+                <div class="uk-form-row">
+                    <input class="uk-width-1-1 uk-button uk-button-primary uk-button-large" type="submit" value="Login">
+                </div>
+                <div class="uk-form-row uk-text-small">
+                    <label class="uk-float-left">
+                        <input type="checkbox"> Remember Me</label>
+                    <a class="uk-float-right uk-link uk-link-muted" href="#">Forgot Password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="{% static "blog/js/jquery.js"%}"></script>
+    <script src="{% static "blog/js/uikit.js" %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static from staticfiles %}
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>--Welcome to QKworld--{%block title_block%}Views{%endblock title_block%}</title>
+    <link rel="shortcut icon" href="{% static "/blog/images/favicon.icon" %}" type="image/x-icon">
+    {# <link rel="stylesheet" href="{{static ('css/uikit.css') }}"> #}
+    <link rel="stylesheet" type="text/css" href="{% static "blog/css/uikit.css" %}">
+</head>
+<body>
+	<h1 class="uk-h1">欢迎注册！</h1>
+	 {% if registered %}
+        QKworld says: <strong>thank you for registering!</strong>
+        <a href="/blog/">Return to the homepage.</a><br />
+        {% else %}
+        QKworld says: <strong>register here!</strong><br />
+
+        <form id="user_form" method="post" action="/register/"
+                enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <!-- Display each form. The as_p method wraps each element in a paragraph
+                 (<p>) element. This ensures each element appears on a new line,
+                 making everything look neater. -->
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+
+            <!-- Provide a button to click to submit the form. -->
+            <input type="submit"  value="Register" />
+        </form>
+    {% endif %}
+	<script src="{% static "blog/js/jquery.js"%}"></script>
+    <script src="{% static "blog/js/uikit.js" %}"></script>
+</body>
+</html>
