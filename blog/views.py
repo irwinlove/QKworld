@@ -54,16 +54,16 @@ def register(request):
 		profile_form=UserProfileForm()
 	return render(request,'blog/register.html',{'user_form':user_form,'profile_form':profile_form,'registered':register})
 def user_login(request):
-	if request.method=='post':
+	if request.method=='POST':
 		username=request.POST.get('username')
 		password=request.POST.get('password')
-		user=authenticate(username,password)
+		user=authenticate(username=username,password=password)
 		if user:
 			if user.is_active:
 				login(request,user)
 				return HttpResponseRedirect('/blog/')
 			else:
-				return HttpResponse("you account has disabled.")
+				return HttpResponse("The password is valid, but the account has been disabled!")
 		else:
 			print "Invalid login details: {0}, {1}".format(username, password)
 			return HttpResponse("Invalid login details supplied.")
