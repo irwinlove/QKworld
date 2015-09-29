@@ -8,6 +8,7 @@ from blog.forms import Userform,UserProfileForm
 from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib.auth.decorators import login_required
+@login_required
 def blog_list(request):
 	artical_list=Artical.objects.all().order_by('-publishTime')
 	paginator=Paginator(artical_list, 5)#show 5 artical per page
@@ -74,4 +75,4 @@ def user_logout(request):
 	return HttpResponseRedirect('/blog/')
 @login_required
 def restricted(request):
-	return HttpResponseRedirect('/login/')
+	return HttpResponseRedirect('accounts/login/')
