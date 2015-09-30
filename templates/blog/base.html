@@ -1,20 +1,19 @@
-<!DOCTYPE html>
-{%load static from staticfiles %}
+<!DOCTYPE html> {%load staticfiles %}
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>--Welcome to QKworld--{%block title_block%}Views{%endblock title_block%}</title>
-    <link rel="shortcut icon" href="{% static "/blog/images/favicon.icon" %}" type="image/x-icon">
-    {# <link rel="stylesheet" href="{{static ('css/uikit.css') }}"> #}
+    <link rel="shortcut icon" href="{% static "blog/images/favicon.ico" %}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="{% static "blog/css/uikit.css" %}">
 </head>
 
 <body>
     <div class="uk-container uk uk-container-center uk-margin-top uk-margin-large-bottom">
         <!-- navgation 导航栏-->
-        <nav class="uk-navbar uk-margin-large-bottom uk-navbar-attached">
+        <nav class="uk-navbar uk-margin-large-bottom uk-navbar-attached ">
             <a href="#side-nav" class="uk-navbar-toggle " data-uk-offcanvas></a>
             <a class="uk-navbar-brand uk-hidden-small" href="#">官方网站</a>
             <ul class="uk-navbar-nav uk-hidden-small">
@@ -22,7 +21,7 @@
                     <a href="#"><i class="uk-icon-home"></i>首页</a>
                 </li>
                 <li class="uk-active">
-                    <a href="#"><i class="uk-icon-book"></i>博客</a>
+                    <a href="/blog"><i class="uk-icon-book"></i>博客</a>
                 </li>
                 <li>
                     <a href="#"><i class="uk-icon-shopping-cart"></i>商城</a>
@@ -36,19 +35,19 @@
             </div>
             <div class="uk-navbar-flip">
                 <ul class="uk-navbar-nav">
-                  {% if user %}
-                  <li class="uk-parent" data-uk-dropdown>
-                      <a href="#0"><i class="uk-icon-user"></i> {{ user.name }}</a>
-                      <div class="uk-dropdown uk-dropdown-navbar">
-                          <ul class="uk-nav uk-nav-navbar">
-                              <li><a href="/signout"><i class="uk-icon-sign-out"></i> 退出</a></li>
-                          </ul>
-                      </div>
-                  </li>
-                  {% else %}
-                    <li><a href="/signin"><i class="uk-icon-sign-in"></i> 登陆</a></li>
-                    <li><a href="/register"><i class="uk-icon-edit"></i> 注册</a></li>
-                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li class="uk-parent" data-uk-dropdown>
+                        <a href="/accounts/"><i class="uk-icon-user"></i> {{ user.username }}</a>
+                        <div class="uk-dropdown uk-dropdown-navbar">
+                            <ul class="uk-nav uk-nav-navbar">
+                                <li><a href="{% url 'auth_logout' %}?next=/blog/"><i class="uk-icon-sign-out"></i> 退出</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    {% else %}
+                    <li><a href="{% url 'auth_login' %}"><i class="uk-icon-sign-in"></i> 登陆</a></li>
+                   <li><a href="{% url 'registration_register' %}"><i class="uk-icon-edit"></i> 注册</a></li>
+                   {% endif %}
                 </ul>
                 <a href="#side-nav" class="uk-navbar-toggle " data-uk-offcanvas></a>
             </div>
@@ -97,7 +96,7 @@
     </div>
     <!-- main -->
     <div>
-       {% block main_block %}{% endblock main_block %} 
+        {% block main_block %}{% endblock main_block %}
     </div>
     <!-- footer -->
     <footer>
@@ -121,6 +120,7 @@
     <script src="{% static "blog/js/jquery.js"%}"></script>
     <script src="{% static "blog/js/uikit.js" %}"></script>
     <script src="{% static "blog/js/components/search.js" %}"></script>
+    <script src="{% static "blog/js/components/pagination.js" %}"></script>
 </body>
 
 </html>

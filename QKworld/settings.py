@@ -37,7 +37,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django.contrib.comments',
     'registration',
     'blog',
     'duoshuo',
@@ -121,5 +120,7 @@ REGISTRATION_AUTO_LOGIN = True  # If True, the user will be automatically logged
 LOGIN_REDIRECT_URL = '/blog/'  # The page you want users to arrive at after they successful log in
 LOGIN_URL = '/accounts/login/'  # The page users are directed to if they are not logged in,and are trying to access pages requiring authentication
 
-DUOSHUO_SECRET = 'secret'
-DUOSHUO_SHORT_NAME = 'shortname'
+DUOSHUO_SECRET = '0c6077fbc608e060b044515ccb4675d1'
+DUOSHUO_SHORT_NAME = 'qkworld'
+# SSO_LOGIN_URL = '/accounts/login/'
+# SSO_LOGOUT_URL = '/accounts/logout/'

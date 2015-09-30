@@ -1,0 +1,24 @@
+<ul class="uk-pagination">
+    {% if blogs.has_previous %}
+    <li class="uk-pagination-previous "><a href="?page={{blogs.previous_page_number}}"><i class="uk-icon-angle-left"></i></a></li>
+    {% endif %} {% for p in blogs.paginator.page_range %} {% ifequal p blogs.number %}
+    <li class="uk-active"><span>{{p}}</span></li>
+    {% else %}
+    <li><a href="?page={{p}}">{{p}}</a></li>
+    {% endifequal %} {% endfor %} {% if blogs.has_next %}
+    <li class="uk-pagination-next"><a href="?page={{blogs.next_page_number}}"><i class="uk-icon-angle-right"></i></a></li>
+    {% endif %}
+</ul>
+<!-- <div class="pagination">
+                <span class="step-links">
+                    {% if blogs.has_previous %}
+                        <a href="?page={{ blogs.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="current">
+                        Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}.
+                    </span> 
+                    {% if blogs.has_next %}
+                        <a href="?page={{ blogs.next_page_number }}">next</a> 
+                    {% endif %}
+                </span>
+            </div> -->

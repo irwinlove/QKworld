@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load staticfiles %} {% load duoshuo_tags %}{% block title_block %}Home{% endblock title_block %} {% block main_block %}
+{% extends "blog/base.html" %} {% load staticfiles %} {% block title_block %}Home{% endblock title_block %} {% block main_block %}
 <div class="uk-container uk-container-center">
     <div class="uk-grid" data-uk-grid-margin="">
         <div class="uk-width-medium-3-4">
@@ -15,9 +15,9 @@
                 <p><a href="/blog/{{ blog.id }}">继续阅读 <i class="uk-icon-angle-double-right"></i></a></p>
             </article>
             <hr class="uk-article-divider"> -->
-            <div class="uk-comment">
-                {% include "blog/duoshuo.html" %}
-            </div>
+            
+                {% include "blog/_comments.html" %}
+            
         </div>
         <div class="uk-width-medium-1-4">
             <div class="uk-panel">

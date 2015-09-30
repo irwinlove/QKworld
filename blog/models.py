@@ -47,5 +47,8 @@ class UserProfile(models.Model):
 	website=models.URLField()
 	picture=models.ImageField(upload_to='profile_images',blank=True)
 	user=models.OneToOneField(User)
+	duoshuo_id=models.IntegerField(default=0)
+	token=models.IntegerField(default=0)
+	avatar=models.URLField(blank=True,null=True)
 	def __unicode__(self):
 		return self.user.username
